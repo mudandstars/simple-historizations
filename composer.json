@@ -1,13 +1,20 @@
 {
 	"name": "mudandstars/historize-model-changes",
 	"description": "This package allows for simple historization of specific columns of a model.",
+	"type": "library",
+	"license": "MIT",
 	"autoload": {
 		"psr-4": {
-			"Mudandstars\\HistorizeModelChanges\\": "src/",
-			"Mudandstars\\HistorizeModelChanges\\Tests\\": "tests",
-            "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+			"Mudandstars\\HistorizeModelChanges\\": "src"
 		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Mudandstars\\HistorizeModelChanges\\Tests\\": "tests"
+		},
+        "classmap": [
+            "tests"
+        ]
 	},
 	"authors": [
 		{
@@ -18,7 +25,7 @@
 	"require-dev": {
 		"pestphp/pest": "^1.22",
 		"pestphp/pest-plugin-laravel": "^1.4",
-		"orchestra/testbench": "^7.22",
+		"orchestra/testbench": "^8.0",
 		"laravel/pint": "^1.4"
 	},
 	"config": {
@@ -26,11 +33,11 @@
 			"pestphp/pest-plugin": true
 		}
 	},
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Mudandstars\\HistorizeModelChanges\\HMCServiceProvider"
-            ]
-        }
-    }
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Mudandstars\\HistorizeModelChanges\\HMCServiceProvider"
+			]
+		}
+	}
 }
