@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Mudandstars\HistorizeModelChanges\Traits\HistorizeModelChange;
+
+// This Model is used just for testing
+// It implements the trait and is therefore used to test the commands
+
+class TraitTestModel extends Model
+{
+    use HasFactory;
+    use HistorizeModelChange;
+
+    protected $historize = [
+        'TestHistorization' => 'string',
+        'AnotherHistorization' => 'integer'
+    ];
+
+    protected $guarded = [];
+
+    protected $dates = [
+        'date',
+        'timestamp',
+        'timestampTz',
+    ];
+
+    protected $casts = [
+        'boolean' => 'boolean'
+    ];
+}

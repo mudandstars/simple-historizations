@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+// Custom Historization Model
+class {{ CLASS_NAME }} extends Model
+{
+    use HasFactory;
+
+    protected $guarded = [];
+}

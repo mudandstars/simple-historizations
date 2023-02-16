@@ -6,15 +6,18 @@
 	"autoload": {
 		"psr-4": {
 			"Mudandstars\\HistorizeModelChanges\\": "src"
-		}
+		},
+		"classmap": [
+			"src"
+		]
 	},
 	"autoload-dev": {
 		"psr-4": {
 			"Mudandstars\\HistorizeModelChanges\\Tests\\": "tests"
 		},
-        "classmap": [
-            "tests"
-        ]
+		"classmap": [
+			"tests"
+		]
 	},
 	"authors": [
 		{
