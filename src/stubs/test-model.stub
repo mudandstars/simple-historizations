@@ -16,7 +16,11 @@ class TraitTestModel extends Model
 
     protected $historize = [
         'TestHistorization' => 'string',
-        'AnotherHistorization' => 'integer'
+        'AnotherHistorization' => 'integer',
+        'ThirdModel' => 'boolean',
+        'DateHistorization' => 'date',
+        'TimestampHistorization' => 'timestamp',
+        'LastOne' => 'timestampTz',
     ];
 
     protected $guarded = [];

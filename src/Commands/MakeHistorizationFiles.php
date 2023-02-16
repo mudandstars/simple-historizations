@@ -2,9 +2,11 @@
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Mudandstars\HistorizeModelChanges\Actions\GetCorrespondingMigrationPath;
 use Mudandstars\HistorizeModelChanges\Actions\GetMigrationName;
 use Mudandstars\HistorizeModelChanges\Actions\GetTableName;
 use Mudandstars\HistorizeModelChanges\Services\GetHistorizeParams;
+use Mudandstars\HistorizeModelChanges\Services\GetMigrationColumns;
 
 class MakeHistorizationFiles extends Command
 {
@@ -13,6 +15,9 @@ class MakeHistorizationFiles extends Command
     protected $description = 'Makes all migration- and model-files necessary for the historization feature.';
 
     protected $files;
+
+    protected $currentOriginalModel;
+    protected $historizeParams;
 
     public function __construct(Filesystem $files)
     {
@@ -26,6 +31,9 @@ class MakeHistorizationFiles extends Command
         $modelsPath = app_path('/Models/');
         foreach ($this->getModelsImplementingTrait($modelsPath) as $modelPath) {
             $historizeParams = $getHistorizeParams->getArray($modelsPath.$modelPath);
+
+            $this->currentOriginalModel = trim($modelPath, '.php');
+            $this->historizeParams = $historizeParams;
 
             foreach (array_keys($historizeParams) as $model) {
                 $this->makeFile($model, 'model');
@@ -124,8 +132,15 @@ class MakeHistorizationFiles extends Command
                     'CLASS_NAME' => $model,
                 ];
             case 'migration':
+                $migrationColumnService = new GetMigrationColumns();
+                $migrationColumns = $migrationColumnService->getArray(GetCorrespondingMigrationPath::execute($this->currentOriginalModel));
+
+                $name = $this->historizeParams[$model];
+                $type = $migrationColumns[$name];
+
                 return [
                     'TABLE' => GetTableName::execute($model),
+                    'COLUMNS' => "\t\t\t\$table->".$type."('previous_".$name."');\n\t\t\t\$table->".$type."('new_".$name."');",
                 ];
         }
     }

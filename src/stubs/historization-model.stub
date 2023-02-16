@@ -5,10 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-// Custom Historization Model
 class {{ CLASS_NAME }} extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $guarded = [];
+
+    protected $dates = [
+        'created_at',
+    ];
 }

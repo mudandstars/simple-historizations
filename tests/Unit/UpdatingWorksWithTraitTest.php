@@ -2,10 +2,10 @@
 
 namespace Tests\Unit;
 
-use Mudandstars\HistorizeModelChanges\Models\TestModel;
+use Mudandstars\HistorizeModelChanges\Models\TraitTestModel;
 
 it('model is updated properly', function () {
-    $mockModel = TestModel::create([
+    $mockModel = TraitTestModel::create([
         'string' => 'test1',
     ]);
 

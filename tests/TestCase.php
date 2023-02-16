@@ -2,12 +2,19 @@
 
 namespace Tests;
 
-use Illuminate\Database\Schema\Blueprint;
+use Mudandstars\HistorizeModelChanges\Actions\GetMigrationName;
 use Mudandstars\HistorizeModelChanges\HMCServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
+    public $modelName = 'TestTraitModel';
+
+    public function getModelName(): string
+    {
+        return $this->modelName;
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -23,17 +30,11 @@ class TestCase extends Orchestra
             'database' => ':memory:',
             'prefix' => '',
         ]);
+    }
 
-        $app['db']->connection()->getSchemaBuilder()->create('test_models', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('string');
-            $table->integer('integer')->nullable();
-            $table->boolean('boolean')->nullable();
-            $table->date('date')->nullable();
-            $table->timestamp('timestamp')->nullable();
-            $table->timestampTz('timestampTz')->nullable();
-            $table->timestamps();
-        });
+    protected function defineDatabaseMigrations()
+    {
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
     protected function getPackageProviders($app)
@@ -41,12 +42,26 @@ class TestCase extends Orchestra
         return [HMCServiceProvider::class];
     }
 
-    public function createModelThatUsesTrait(): void
+    private function createModelThatUsesTrait(): void
     {
-        $path = app_path('Models/TraitTestModel.php');
+        $path = app_path('Models/'.$this->modelName . '.php');
 
         $contents = file_get_contents(__DIR__.'/../src/stubs/test-model.stub');
 
         file_put_contents($path, $contents);
+
+        $this->createCorrespondingModelMigration($this->modelName);
+    }
+
+    private function createCorrespondingModelMigration(string $model): void
+    {
+    $correspondingMigrationPath = __DIR__.'/../database/migrations/create_trait_test_models_table.php';
+
+        $contents = file_get_contents($correspondingMigrationPath);
+
+        $getMigrationNameService = new GetMigrationName();
+        $newPath = base_path('database/migrations/'.$getMigrationNameService->execute($model));
+
+        file_put_contents($newPath, $contents);
     }
 }
