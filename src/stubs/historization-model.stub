@@ -16,4 +16,6 @@ class {{ CLASS_NAME }} extends Model
     protected $dates = [
         'created_at',
     ];
+
+{{ CASTS }}
 }

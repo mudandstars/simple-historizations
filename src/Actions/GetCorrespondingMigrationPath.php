@@ -12,7 +12,7 @@ class GetCorrespondingMigrationPath
 
         foreach ($allMigrations as $migration) {
             if (str_contains($migration, $tableName)) {
-                return base_path('database/migrations/' .$migration);
+                return base_path('database/migrations/'.$migration);
             }
         }
     }

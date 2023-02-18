@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('date')->nullable();
             $table->timestamp('timestamp')->nullable();
             $table->timestampTz('timestampTz')->nullable();
+            $table->string('this_column_is_type_string')->nullable();
             $table->timestamps();
         });
     }

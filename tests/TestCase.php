@@ -4,6 +4,8 @@ namespace Tests;
 
 use Mudandstars\HistorizeModelChanges\Actions\GetMigrationName;
 use Mudandstars\HistorizeModelChanges\HMCServiceProvider;
+use Mudandstars\HistorizeModelChanges\Services\GetHistorizeParams;
+use Mudandstars\HistorizeModelChanges\Services\GetMigrationColumns;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -13,6 +15,28 @@ class TestCase extends Orchestra
     public function getModelName(): string
     {
         return $this->modelName;
+    }
+
+    public function getTestModelMigrationColumns(): array
+    {
+        $migrationAction = new GetMigrationName();
+        $getMigractionColumnsService = new GetMigrationColumns();
+
+        $migrationName = $migrationAction->execute($this->getModelName());
+        $migrationPath = base_path('database/migrations/'.$migrationName);
+
+        $migrationColumns = $getMigractionColumnsService->getArray($migrationPath);
+
+        return $migrationColumns;
+    }
+
+    public function getTestModelHistorizeParams(): array
+    {
+        $historizeParamsService = new GetHistorizeParams();
+
+        $historizeParams = $historizeParamsService->getArray(app_path('Models/'.$this->getModelName().'.php'));
+
+        return $historizeParams;
     }
 
     protected function setUp(): void
@@ -44,7 +68,7 @@ class TestCase extends Orchestra
 
     private function createModelThatUsesTrait(): void
     {
-        $path = app_path('Models/'.$this->modelName . '.php');
+        $path = app_path('Models/'.$this->modelName.'.php');
 
         $contents = file_get_contents(__DIR__.'/../src/stubs/test-model.stub');
 
@@ -55,7 +79,7 @@ class TestCase extends Orchestra
 
     private function createCorrespondingModelMigration(string $model): void
     {
-    $correspondingMigrationPath = __DIR__.'/../database/migrations/create_trait_test_models_table.php';
+        $correspondingMigrationPath = __DIR__.'/../database/migrations/create_trait_test_models_table.php';
 
         $contents = file_get_contents($correspondingMigrationPath);
 

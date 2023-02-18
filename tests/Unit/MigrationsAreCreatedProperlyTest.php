@@ -3,16 +3,14 @@
 namespace Tests\Unit;
 
 use Illuminate\Support\Facades\Artisan;
-use Mudandstars\HistorizeModelChanges\Actions\GetMigrationName;
-use Mudandstars\HistorizeModelChanges\Services\GetHistorizeParams;
-use Mudandstars\HistorizeModelChanges\Services\GetMigrationColumns;
 use Mudandstars\HistorizeModelChanges\Actions\GetCorrespondingMigrationPath;
+use Mudandstars\HistorizeModelChanges\Actions\GetMigrationName;
+use Mudandstars\HistorizeModelChanges\Services\GetMigrationColumns;
 
 it('migrations have correct column types', function () {
     Artisan::call('make-historization-files');
 
-    $historizeParamsService = new GetHistorizeParams();
-    $historizeParams = $historizeParamsService->getArray(app_path('Models/'.parent::getModelName().'.php'));
+    $historizeParams = parent::getTestModelHistorizeParams();
 
     foreach (array_keys($historizeParams) as $model) {
         $migrationAction = new GetMigrationName();
@@ -25,8 +23,8 @@ it('migrations have correct column types', function () {
         $name = $historizeParams[$model];
         $type = $migrationColumns[$name];
 
-        expect(str_contains(file_get_contents($migrationPath), "\$table->".$type."('previous_".$name."');"))->toBeTrue();
-        expect(str_contains(file_get_contents($migrationPath), "\$table->".$type."('new_".$name."');"))->toBeTrue();
+        expect(str_contains(file_get_contents($migrationPath), '$table->'.$type."('previous_".$name."');"))->toBeTrue();
+        expect(str_contains(file_get_contents($migrationPath), '$table->'.$type."('new_".$name."');"))->toBeTrue();
 
         unlink($migrationPath);
     }
@@ -35,8 +33,7 @@ it('migrations have correct column types', function () {
 it("migration command creates correct migrations' files", function () {
     Artisan::call('make-historization-files');
 
-    $historizeParamsService = new GetHistorizeParams();
-    $historizeParams = $historizeParamsService->getArray(app_path('Models/'.parent::getModelName().'.php'));
+    $historizeParams = parent::getTestModelHistorizeParams();
 
     foreach (array_keys($historizeParams) as $model) {
         $migrationAction = new GetMigrationName();

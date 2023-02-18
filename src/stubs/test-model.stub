@@ -21,6 +21,7 @@ class TraitTestModel extends Model
         'DateHistorization' => 'date',
         'TimestampHistorization' => 'timestamp',
         'LastOne' => 'timestampTz',
+        'ThisHistorizesTheColumnOfTypeString' => 'this_column_is_type_string',
     ];
 
     protected $guarded = [];

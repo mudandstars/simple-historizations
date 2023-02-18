@@ -17,7 +17,10 @@ class MakeHistorizationFiles extends Command
     protected $files;
 
     protected $currentOriginalModel;
+
     protected $historizeParams;
+
+    protected $modelMigrationColumns;
 
     public function __construct(Filesystem $files)
     {
@@ -26,16 +29,15 @@ class MakeHistorizationFiles extends Command
         $this->files = $files;
     }
 
-    public function handle(GetHistorizeParams $getHistorizeParams)
+    public function handle(GetHistorizeParams $getHistorizeParams, GetMigrationColumns $migrationColumnsService)
     {
         $modelsPath = app_path('/Models/');
         foreach ($this->getModelsImplementingTrait($modelsPath) as $modelPath) {
-            $historizeParams = $getHistorizeParams->getArray($modelsPath.$modelPath);
-
             $this->currentOriginalModel = trim($modelPath, '.php');
-            $this->historizeParams = $historizeParams;
+            $this->modelMigrationColumns = $migrationColumnsService->getArray(GetCorrespondingMigrationPath::execute($this->currentOriginalModel));
+            $this->historizeParams = $getHistorizeParams->getArray($modelsPath.$modelPath);
 
-            foreach (array_keys($historizeParams) as $model) {
+            foreach (array_keys($this->historizeParams) as $model) {
                 $this->makeFile($model, 'model');
                 $this->makeFile($model, 'migration');
             }
@@ -128,15 +130,18 @@ class MakeHistorizationFiles extends Command
     {
         switch ($type) {
             case 'model':
+                $name = $this->historizeParams[$model];
+                $type = $this->modelMigrationColumns[$name];
+
                 return [
                     'CLASS_NAME' => $model,
+                    'CASTS' => $type === 'boolean'
+                        ? "\tprotected \$dates = [\n\t\t'created_at',\n\t];\n\tprotected \$casts = [\n\t\t'".$name."' => 'boolean',"
+                        : "\tprotected \$dates = [\n\t\t'created_at',\n\t\t'".$name."',\n\t];",
                 ];
             case 'migration':
-                $migrationColumnService = new GetMigrationColumns();
-                $migrationColumns = $migrationColumnService->getArray(GetCorrespondingMigrationPath::execute($this->currentOriginalModel));
-
                 $name = $this->historizeParams[$model];
-                $type = $migrationColumns[$name];
+                $type = $this->modelMigrationColumns[$name];
 
                 return [
                     'TABLE' => GetTableName::execute($model),

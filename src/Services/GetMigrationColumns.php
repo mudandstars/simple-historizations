@@ -4,9 +4,9 @@ namespace Mudandstars\HistorizeModelChanges\Services;
 
 class GetMigrationColumns
 {
-    public function getArray(string $path): array
+    public function getArray(string $migrationPath): array
     {
-        $migrationColumns = $this->populateArray($path);
+        $migrationColumns = $this->populateArray($migrationPath);
 
         return $migrationColumns;
     }
@@ -23,9 +23,9 @@ class GetMigrationColumns
             $currentSubstring = substr($arrayInStringForm, $matches[0][$i][1], $matches[0][$i + 1][1] - $matches[0][$i][1]);
 
             $key = $this->getStringBetween($currentSubstring, "('", "')");
-            $value = $this->getStringBetween($currentSubstring, "->", "('");
+            $value = $this->getStringBetween($currentSubstring, '->', "('");
 
-            if (!$key || $key == 'id') {
+            if (! $key || $key == 'id') {
                 continue;
             }
 

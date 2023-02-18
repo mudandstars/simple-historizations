@@ -2,14 +2,8 @@
 
 namespace Tests\Unit;
 
-use Mudandstars\HistorizeModelChanges\Actions\GetMigrationName;
-use Mudandstars\HistorizeModelChanges\Services\GetMigrationColumns;
-
 it('GetHistorizeParam Service returns the proper array', function () {
-    $getMigrationNameAction = new GetMigrationName();
-    $getMigrationColumnsService = new GetMigrationColumns();
-
-    $migrationColumns = $getMigrationColumnsService->getArray(base_path('database/migrations/'.$getMigrationNameAction->execute(parent::getModelName())));
+    $migrationColumns = parent::getTestModelMigrationColumns();
 
     expect($migrationColumns['string'])->toBe('string');
     expect($migrationColumns['integer'])->toBe('integer');
@@ -18,5 +12,5 @@ it('GetHistorizeParam Service returns the proper array', function () {
     expect($migrationColumns['timestamp'])->toBe('timestamp');
     expect($migrationColumns['timestampTz'])->toBe('timestampTz');
 
-    expect($migrationColumns)->toHaveCount(6);
+    expect($migrationColumns)->toHaveCount(7);
 });
