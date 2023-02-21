@@ -13,10 +13,12 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Mudandstars\\HistorizeModelChanges\\Tests\\": "tests"
+			"Mudandstars\\HistorizeModelChanges\\Tests\\": "tests",
+            "App\\": "vendor/orchestra/testbench-core/laravel/app/"
 		},
 		"classmap": [
-			"tests"
+			"tests",
+            "vendor/orchestra/testbench-core/laravel/app/"
 		]
 	},
 	"authors": [
