@@ -10,7 +10,9 @@ Then, on subsequent updates to the primary model, instances of the historization
 
 # Installation & Setup
 1. Install the package into your project via composer like so:
-CODE: composer require mudandstars/historize-model-changes
+```
+composer require mudandstars/historize-model-changes
+```
 2. Use the trait in the models you want to historize on change:
 CODE: use HistorizeModelChange;
 3. Specify the name of your Historization models and the column it should historize:
