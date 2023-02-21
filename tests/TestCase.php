@@ -94,17 +94,6 @@ class TestCase extends Orchestra
         file_put_contents($path, $contents);
 
         $this->createCorrespondingModelMigration($this->modelName);
-        // $this->createDateHistorizationModel();
-    }
-
-    private function createDateHistorizationModel(): void
-    {
-        $path = app_path('Models/DateHistorization.php');
-
-        $contents = file_get_contents(__DIR__.'/../src/Models/DateHistorization.php');
-
-        file_put_contents($path, $contents);
-
     }
 
     private function createCorrespondingModelMigration(string $model): void

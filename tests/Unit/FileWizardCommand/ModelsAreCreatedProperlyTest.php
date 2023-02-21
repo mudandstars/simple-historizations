@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\FileWizardCommand;
 
 use Illuminate\Support\Facades\Artisan;
 
@@ -17,8 +17,6 @@ it('created models have proper relationship', function () {
         expect(str_contains(file_get_contents($modelPath), "use App\Models\\".parent::getModelName().';'))->toBeTrue();
         expect(str_contains(file_get_contents($modelPath), 'public function '.$relationshipName.'(): BelongsTo'))->toBeTrue();
         expect(str_contains(file_get_contents($modelPath), 'return $this->belongsTo('.parent::getModelName().'::class);'))->toBeTrue();
-
-        // unlink($modelPath);
     }
 });
 
@@ -44,8 +42,6 @@ it('created models have proper $casts attribute', function () {
             expect(str_contains(file_get_contents($modelPath), 'protected $casts = ['))->toBeTrue();
             expect(str_contains(file_get_contents($modelPath), $columnName."' => 'boolean',"))->toBeTrue();
         }
-
-        // unlink($modelPath);
     }
 });
 
@@ -63,7 +59,5 @@ it("migration command creates correct models' files", function () {
         expect(str_contains(file_get_contents($modelPath), 'public $timestamps = false;'))->toBeTrue();
         expect(str_contains(file_get_contents($modelPath), 'protected $dates = ['))->toBeTrue();
         expect(str_contains(file_get_contents($modelPath), "'created_at',"))->toBeTrue();
-
-        // unlink($modelPath);
     }
 });

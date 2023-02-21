@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Services;
 
 it('GetHistorizeParam Service returns the proper array', function () {
     $migrationColumns = parent::getTestModelMigrationColumns();

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\FileWizardCommand;
 
 use Illuminate\Support\Facades\Artisan;
 use Mudandstars\HistorizeModelChanges\Actions\GetCorrespondingMigrationPath;
@@ -27,8 +27,6 @@ it('migrations have correct column types', function () {
         expect(str_contains(file_get_contents($migrationPath), "\$table->timestampTz('created_at')->default(Carbon::now());"))->toBeTrue();
         expect(str_contains(file_get_contents($migrationPath), '$table->'.$type."('previous_".$name."');"))->toBeTrue();
         expect(str_contains(file_get_contents($migrationPath), '$table->'.$type."('new_".$name."');"))->toBeTrue();
-
-        // unlink($migrationPath);
     }
 });
 
@@ -44,8 +42,6 @@ it('migration files have proper foreignIdFor', function () {
 
         expect(str_contains(file_get_contents($migrationPath), 'use App\Models\\'.parent::getModelName().';'))->toBeTrue();
         expect(str_contains(file_get_contents($migrationPath), '$table->foreignIdFor('.parent::getModelName().'::class)->constrained();'))->toBeTrue();
-
-        // unlink($migrationPath);
     }
 });
 
@@ -60,7 +56,5 @@ it("migration command creates correct migrations' files", function () {
         $migrationPath = base_path('database/migrations/'.$migrationName);
 
         expect(file_exists($migrationPath))->toBeTrue();
-
-        // unlink($migrationPath);
     }
 });

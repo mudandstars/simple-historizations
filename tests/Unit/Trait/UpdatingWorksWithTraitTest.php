@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Trait;
 
 use Illuminate\Support\Facades\Artisan;
 use Mudandstars\HistorizeModelChanges\Models\TraitTestModel;
