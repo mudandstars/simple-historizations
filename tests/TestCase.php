@@ -48,10 +48,21 @@ class TestCase extends Orchestra
 
     protected function tearDown(): void
     {
-        $modelPath = app_path('Models/'.$this->modelName.'.php');
+        $modelsPath = app_path('Models/');
+        $migrationsPath = base_path('database/migrations/');
 
-        //TODO destroy model and migration file
-        //TODO destroy all files in the test-env folder 'app\models' and 'database\migrations'
+        $this->removeFilesFromDirectory($modelsPath);
+        $this->removeFilesFromDirectory($migrationsPath);
+    }
+
+    protected function removeFilesFromDirectory(string $directory): void {
+        foreach (scandir($directory) as $file) {
+            if (!str_contains($file, '.php')) {
+                continue;
+            }
+
+            unlink($directory.$file);
+        }
     }
 
     protected function defineEnvironment($app)
