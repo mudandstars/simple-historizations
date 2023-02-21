@@ -5,7 +5,7 @@ This package can be used to make simple historizations of specific columns of a 
 
 Using its main command, the historization models and tables are set up and connected to the primary model.
 
-Then, on subsequent updates to the primary model, instances of the historization models specified will be created automatically.
+Then, on subsequent changes to the primary model, instances of the historization models will be created, if the specified column changes.
 
 ## Installation & Setup
 1. Install the package into your project via composer like so:
