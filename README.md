@@ -1,11 +1,14 @@
 # historize-model-changes
 # THIS IS STILL IN BETA. DO NOT USE THIS PACKAGE YET.
 
-This package can be used to make simple historizations of specific columns of a model.
+When you want to historize changes to a column in your model, this package is for you.
 
-Using its main command, the historization models and tables are set up and connected to the primary model.
+## How it works
+You have a model MyModel and want to historize changes to the column_to_historize column.
 
-Then, on subsequent changes to the primary model, instances of the historization models will be created, if the specified column changes.
+So you add the trait to the model and specify which columns to historize, giving each historization model a proper name.
+
+Then, you run the command and migrate your database and voilá, whenever the specified column changes, a new instance of the historization model will be created.
 
 ## Installation & Setup
 1. Install the package into your project via composer like so:
@@ -35,9 +38,10 @@ class MyModel extends Model
     ...
 }
 ```
-4. Run the artisan command to make the required models and migrations:
+4. Run the artisan command to make the required models and migrations and migrate your database:
 ```
 sail artisan make-historization-files
+sail artisan migrate
 ```
 ---
 You are all set up now. On subsequent updates to the model, an instance of the specified HistorizationModel will be created when the column_to_historize changes.
