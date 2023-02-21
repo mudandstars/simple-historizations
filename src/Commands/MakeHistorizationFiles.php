@@ -94,9 +94,7 @@ class MakeHistorizationFiles extends Command
             case 'model':
                 return app_path('Models/').$model.'.php';
             case 'migration':
-                $migrationAction = new GetMigrationName();
-
-                return base_path('database/migrations/'.$migrationAction->execute($model));
+                return base_path('database/migrations/'.GetMigrationName::execute($model));
         }
     }
 

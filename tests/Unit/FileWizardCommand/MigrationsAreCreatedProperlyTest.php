@@ -12,21 +12,20 @@ it('migrations have correct column types', function () {
 
     $historizeParams = parent::getTestModelHistorizeParams();
 
-    foreach (array_keys($historizeParams) as $model) {
-        $migrationAction = new GetMigrationName();
-        $migrationName = $migrationAction->execute($model);
+    foreach (array_keys($historizeParams) as $modelName) {
+        $migrationName = GetMigrationName::execute($modelName);
         $migrationPath = base_path('database/migrations/'.$migrationName);
 
         $migrationColumnService = new GetMigrationColumns();
         $migrationColumns = $migrationColumnService->getArray(GetCorrespondingMigrationPath::execute(parent::getModelName()));
 
-        $name = $historizeParams[$model];
-        $type = $migrationColumns[$name];
+        $columnName = $historizeParams[$modelName];
+        $type = $migrationColumns[$columnName];
 
         expect(str_contains(file_get_contents($migrationPath), "use Carbon\Carbon;"))->toBeTrue();
         expect(str_contains(file_get_contents($migrationPath), "\$table->timestampTz('created_at')->default(Carbon::now());"))->toBeTrue();
-        expect(str_contains(file_get_contents($migrationPath), '$table->'.$type."('previous_".$name."');"))->toBeTrue();
-        expect(str_contains(file_get_contents($migrationPath), '$table->'.$type."('new_".$name."');"))->toBeTrue();
+        expect(str_contains(file_get_contents($migrationPath), '$table->'.$type."('previous_".$columnName."');"))->toBeTrue();
+        expect(str_contains(file_get_contents($migrationPath), '$table->'.$type."('new_".$columnName."');"))->toBeTrue();
     }
 });
 
@@ -35,9 +34,8 @@ it('migration files have proper foreignIdFor', function () {
 
     $historizeParams = parent::getTestModelHistorizeParams();
 
-    foreach (array_keys($historizeParams) as $model) {
-        $migrationNameAction = new GetMigrationName();
-        $migrationName = $migrationNameAction->execute($model);
+    foreach (array_keys($historizeParams) as $modelName) {
+        $migrationName = GetMigrationName::execute($modelName);
         $migrationPath = base_path('database/migrations/'.$migrationName);
 
         expect(str_contains(file_get_contents($migrationPath), 'use App\Models\\'.parent::getModelName().';'))->toBeTrue();

@@ -19,10 +19,9 @@ class TestCase extends Orchestra
 
     public function getTestModelMigrationColumns(): array
     {
-        $migrationAction = new GetMigrationName();
         $getMigractionColumnsService = new GetMigrationColumns();
 
-        $migrationName = $migrationAction->execute($this->getModelName());
+        $migrationName = GetMigrationName::execute($this->getModelName());
         $migrationPath = base_path('database/migrations/'.$migrationName);
 
         $migrationColumns = $getMigractionColumnsService->getArray($migrationPath);
@@ -103,8 +102,7 @@ class TestCase extends Orchestra
 
         $contents = file_get_contents($correspondingMigrationPath);
 
-        $getMigrationNameService = new GetMigrationName();
-        $newPath = base_path('database/migrations/'.$getMigrationNameService->execute($model));
+        $newPath = base_path('database/migrations/'.GetMigrationName::execute($model));
 
         file_put_contents($newPath, $contents);
     }

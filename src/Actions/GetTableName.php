@@ -4,9 +4,9 @@ namespace Mudandstars\HistorizeModelChanges\Actions;
 
 class GetTableName
 {
-    public static function execute(string $model): string
+    public static function execute(string $modelName): string
     {
-        $migrationNameParts = preg_split('/(?=[A-Z])/', $model);
+        $migrationNameParts = preg_split('/(?=[A-Z])/', $modelName);
         $migrationName = '';
 
         foreach ($migrationNameParts as $migrationNamePart) {
