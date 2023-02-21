@@ -9,13 +9,16 @@ class HMCServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->commands([
-            MakeHistorizationFiles::class,
-        ]);
+        //
     }
 
     public function boot(): void
     {
-        //
+        // Register the command if we are using the application via the CLI
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                MakeHistorizationFiles::class,
+            ]);
+        }
     }
 }
