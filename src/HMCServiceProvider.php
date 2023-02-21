@@ -3,7 +3,7 @@
 namespace Mudandstars\HistorizeModelChanges;
 
 use Illuminate\Support\ServiceProvider;
-use MakeHistorizationFiles;
+use Mudandstars\HistorizeModelChanges\Commands\MakeHistorizationFiles;
 
 class HMCServiceProvider extends ServiceProvider
 {

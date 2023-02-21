@@ -1,5 +1,7 @@
 <?php
 
+namespace Mudandstars\HistorizeModelChanges\Commands;
+
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Mudandstars\HistorizeModelChanges\Actions\GetCorrespondingMigrationPath;
