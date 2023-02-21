@@ -22,19 +22,19 @@ class MyModel extends Model
 }
 ```
 3. Specify the name of your Historization models and the column it should historize:
-```php
-class MyModel extends Model
-{
-    use HistorizeModelChange;
+    ```php
+    class MyModel extends Model
+    {
+        use HistorizeModelChange;
 
-    protected $historize = [
-        'HistorizationModelName' => 'column_to_historize',
-        'CostHistorization' => 'cost',
-    ];
+        protected $historize = [
+            'HistorizationModelName' => 'column_to_historize',
+            'CostHistorization' => 'cost',
+        ];
 
-    ...
-}
-```
+        ...
+    }
+    ```
 4. Run the artisan command to make the required models and migrations:
 ```
 sail artisan make-historization-files
