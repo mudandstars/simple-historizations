@@ -4,7 +4,6 @@ namespace Mudandstars\HistorizeModelChanges\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Mudandstars\HistorizeModelChanges\Models\TraitTestModel;
 
 class DateHistorization extends Model
 {

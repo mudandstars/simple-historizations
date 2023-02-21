@@ -1,9 +1,9 @@
 <?php
 
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use Mudandstars\HistorizeModelChanges\Models\TraitTestModel;
 
 return new class extends Migration
@@ -13,8 +13,8 @@ return new class extends Migration
         Schema::create('integer_historizations', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(TraitTestModel::class)->constrained();
-			$table->integer('previous_integer');
-			$table->integer('new_integer');
+            $table->integer('previous_integer');
+            $table->integer('new_integer');
             $table->timestampTz('created_at')->default(Carbon::now());
         });
     }

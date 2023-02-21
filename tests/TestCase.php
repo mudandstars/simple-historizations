@@ -55,9 +55,10 @@ class TestCase extends Orchestra
         $this->removeFilesFromDirectory($migrationsPath);
     }
 
-    protected function removeFilesFromDirectory(string $directory): void {
+    protected function removeFilesFromDirectory(string $directory): void
+    {
         foreach (scandir($directory) as $file) {
-            if (!str_contains($file, '.php')) {
+            if (! str_contains($file, '.php')) {
                 continue;
             }
 

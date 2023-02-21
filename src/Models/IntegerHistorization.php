@@ -3,9 +3,7 @@
 namespace Mudandstars\HistorizeModelChanges\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Mudandstars\HistorizeModelChanges\Models\TraitTestModel;
 
 class IntegerHistorization extends Model
 {
@@ -13,9 +11,9 @@ class IntegerHistorization extends Model
 
     protected $guarded = [];
 
-	protected $dates = [
-		'created_at',
-	];
+    protected $dates = [
+        'created_at',
+    ];
 
     public function traitTestModels(): BelongsTo
     {

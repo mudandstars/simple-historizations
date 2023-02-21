@@ -4,8 +4,8 @@ namespace Tests\Unit;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
-use Mudandstars\HistorizeModelChanges\Models\TraitTestModel;
 use Mudandstars\HistorizeModelChanges\Models\DateHistorization;
+use Mudandstars\HistorizeModelChanges\Models\TraitTestModel;
 
 it('historization is created if column-value is included in the update-attributes array', function () {
     Artisan::call('make-historization-files');
