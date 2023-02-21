@@ -4,7 +4,23 @@ namespace Tests\Unit;
 
 use Illuminate\Support\Facades\Artisan;
 
-//TODO test that the model files have the proper relationships
+it('created models have proper relationship', function () {
+    Artisan::call('make-historization-files');
+
+    $historizeParams = parent::getTestModelHistorizeParams();
+
+    foreach (array_keys($historizeParams) as $model) {
+        $modelPath = app_path('Models/'.$model.'.php');
+        $relationshipName = lcfirst(parent::getModelName()).'s';
+
+        expect(str_contains(file_get_contents($modelPath), "use Illuminate\Database\Eloquent\Relations\BelongsTo;"))->toBeTrue();
+        expect(str_contains(file_get_contents($modelPath), "use App\Models\\".parent::getModelName().';'))->toBeTrue();
+        expect(str_contains(file_get_contents($modelPath), 'public function '.$relationshipName.'(): BelongsTo'))->toBeTrue();
+        expect(str_contains(file_get_contents($modelPath), 'return $this->belongsTo('.parent::getModelName().'::class);'))->toBeTrue();
+
+        // unlink($modelPath);
+    }
+});
 
 it('created models have proper $casts attribute', function () {
     Artisan::call('make-historization-files');
@@ -29,7 +45,7 @@ it('created models have proper $casts attribute', function () {
             expect(str_contains(file_get_contents($modelPath), $columnName."' => 'boolean',"))->toBeTrue();
         }
 
-        unlink($modelPath);
+        // unlink($modelPath);
     }
 });
 
@@ -48,6 +64,6 @@ it("migration command creates correct models' files", function () {
         expect(str_contains(file_get_contents($modelPath), 'protected $dates = ['))->toBeTrue();
         expect(str_contains(file_get_contents($modelPath), "'created_at',"))->toBeTrue();
 
-        unlink($modelPath);
+        // unlink($modelPath);
     }
 });

@@ -23,10 +23,29 @@ it('migrations have correct column types', function () {
         $name = $historizeParams[$model];
         $type = $migrationColumns[$name];
 
+        expect(str_contains(file_get_contents($migrationPath), "use Carbon\Carbon;"))->toBeTrue();
+        expect(str_contains(file_get_contents($migrationPath), "\$table->timestampTz('created_at')->default(Carbon::now());"))->toBeTrue();
         expect(str_contains(file_get_contents($migrationPath), '$table->'.$type."('previous_".$name."');"))->toBeTrue();
         expect(str_contains(file_get_contents($migrationPath), '$table->'.$type."('new_".$name."');"))->toBeTrue();
 
-        unlink($migrationPath);
+        // unlink($migrationPath);
+    }
+});
+
+it('migration files have proper foreignIdFor', function () {
+    Artisan::call('make-historization-files');
+
+    $historizeParams = parent::getTestModelHistorizeParams();
+
+    foreach (array_keys($historizeParams) as $model) {
+        $migrationNameAction = new GetMigrationName();
+        $migrationName = $migrationNameAction->execute($model);
+        $migrationPath = base_path('database/migrations/'.$migrationName);
+
+        expect(str_contains(file_get_contents($migrationPath), 'use App\Models\\'.parent::getModelName().';'))->toBeTrue();
+        expect(str_contains(file_get_contents($migrationPath), '$table->foreignIdFor('.parent::getModelName().'::class)->constrained();'))->toBeTrue();
+
+        // unlink($migrationPath);
     }
 });
 
@@ -42,6 +61,6 @@ it("migration command creates correct migrations' files", function () {
 
         expect(file_exists($migrationPath))->toBeTrue();
 
-        unlink($migrationPath);
+        // unlink($migrationPath);
     }
 });
