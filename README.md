@@ -17,15 +17,24 @@ composer require mudandstars/historize-model-changes
 ```
 class MyModel extends Model
 {
-use HistorizeModelChange;
-...
+    use HistorizeModelChange;
+    
+    ...
+}
 ```
 3. Specify the name of your Historization models and the column it should historize:
 ```
-protected $historize = [
-    'HistorizationModelName' => 'column_to_historize',
-    'CostHistorization' => 'cost',
-];
+class MyModel extends Model
+{
+    use HistorizeModelChange;
+
+    protected $historize = [
+        'HistorizationModelName' => 'column_to_historize',
+        'CostHistorization' => 'cost',
+    ];
+
+    ...
+}
 ```
 4. Run the artisan command to make the required models and migrations:
 ```
