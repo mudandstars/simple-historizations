@@ -3,19 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\{{ RELATED_MODEL }};
 use Illuminate\Database\Eloquent\Model;
 
 class {{ CLASS_NAME }} extends Model
 {
-    use HasFactory;
-
     public $timestamps = false;
 
     protected $guarded = [];
 
-    protected $dates = [
-        'created_at',
-    ];
-
 {{ CASTS }}
+
+    public function {{ RELATIONSHIP_NAME }}(): BelongsTo
+    {
+        return $this->belongsTo({{ RELATED_MODEL }}::class);
+    }
 }

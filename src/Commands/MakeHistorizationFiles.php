@@ -130,14 +130,11 @@ class MakeHistorizationFiles extends Command
     {
         switch ($type) {
             case 'model':
-                $name = $this->historizeParams[$model];
-                $type = $this->modelMigrationColumns[$name];
-
                 return [
                     'CLASS_NAME' => $model,
-                    'CASTS' => $type === 'boolean'
-                        ? "\tprotected \$dates = [\n\t\t'created_at',\n\t];\n\tprotected \$casts = [\n\t\t'".$name."' => 'boolean',"
-                        : "\tprotected \$dates = [\n\t\t'created_at',\n\t\t'".$name."',\n\t];",
+                    'CASTS' => $this->getCastsAttribute($model),
+                    'RELATED_MODEL' => $this->currentOriginalModel,
+                    'RELATIONSHIP_NAME' => lcfirst($this->currentOriginalModel).'s',
                 ];
             case 'migration':
                 $name = $this->historizeParams[$model];
@@ -146,7 +143,27 @@ class MakeHistorizationFiles extends Command
                 return [
                     'TABLE' => GetTableName::execute($model),
                     'COLUMNS' => "\t\t\t\$table->".$type."('previous_".$name."');\n\t\t\t\$table->".$type."('new_".$name."');",
+                    'RELATED_MODEL' => $this->currentOriginalModel,
                 ];
+        }
+    }
+
+    protected function getCastsAttribute(string $model): string
+    {
+        $name = $this->historizeParams[$model];
+        $type = $this->modelMigrationColumns[$name];
+
+        switch($type) {
+            case 'boolean':
+                return "\tprotected \$dates = [\n\t\t'created_at',\n\t];\n\tprotected \$casts = [\n\t\t'".$name."' => 'boolean',";
+            case 'date':
+                return "\tprotected \$dates = [\n\t\t'created_at',\n\t\t'".$name."',\n\t];";
+            case 'timestamp':
+                return "\tprotected \$dates = [\n\t\t'created_at',\n\t\t'".$name."',\n\t];";
+            case 'timestampTz':
+                return "\tprotected \$dates = [\n\t\t'created_at',\n\t\t'".$name."',\n\t];";
+            default:
+                return "\tprotected \$dates = [\n\t\t'created_at',\n\t];";
         }
     }
 }
