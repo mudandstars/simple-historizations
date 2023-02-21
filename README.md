@@ -13,7 +13,7 @@ Then, on subsequent updates to the primary model, instances of the historization
 composer require mudandstars/historize-model-changes
 ```
 2. Use the trait in the models you want to historize on change:
-```laravel
+```php
 class MyModel extends Model
 {
     use HistorizeModelChange;
@@ -22,7 +22,7 @@ class MyModel extends Model
 }
 ```
 3. Specify the name of your Historization models and the column it should historize:
-```laravel
+```php
 class MyModel extends Model
 {
     use HistorizeModelChange;
