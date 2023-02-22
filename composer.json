@@ -11,14 +11,15 @@
 			"src"
 		]
 	},
+	"homepage": "https://github.com/mudandstars/historize-model-changes",
 	"autoload-dev": {
 		"psr-4": {
 			"Mudandstars\\HistorizeModelChanges\\Tests\\": "tests",
-            "App\\": "vendor/orchestra/testbench-core/laravel/app/"
+			"App\\": "vendor/orchestra/testbench-core/laravel/app/"
 		},
 		"classmap": [
 			"tests",
-            "vendor/orchestra/testbench-core/laravel/app/"
+			"vendor/orchestra/testbench-core/laravel/app/"
 		]
 	},
 	"authors": [
@@ -28,15 +29,27 @@
 		}
 	],
 	"require-dev": {
+		"laravel/pint": "^1.4",
+		"orchestra/testbench": "^8.0",
 		"pestphp/pest": "^1.22",
 		"pestphp/pest-plugin-laravel": "^1.4",
-		"orchestra/testbench": "^8.0",
-		"laravel/pint": "^1.4"
+		"phpstan/extension-installer": "^1.2",
+		"phpstan/phpstan-deprecation-rules": "^1.1",
+		"phpstan/phpstan-phpunit": "^1.3"
 	},
 	"config": {
+		"sort-packages": true,
 		"allow-plugins": {
-			"pestphp/pest-plugin": true
+			"pestphp/pest-plugin": true,
+			"phpstan/extension-installer": true
 		}
+	},
+	"scripts": {
+		"post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+		"analyse": "vendor/bin/phpstan analyse",
+		"test": "vendor/bin/pest",
+		"test-coverage": "vendor/bin/pest --coverage",
+		"format": "vendor/bin/pint"
 	},
 	"extra": {
 		"laravel": {
@@ -46,6 +59,9 @@
 		}
 	},
 	"require": {
+		"php": "^8.2",
 		"spatie/laravel-package-tools": "^1.14"
-	}
+	},
+	"minimum-stability": "stable",
+	"prefer-stable": true
 }
