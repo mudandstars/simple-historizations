@@ -30,6 +30,7 @@
 	],
 	"require-dev": {
 		"laravel/pint": "^1.4",
+		"nunomaduro/larastan": "^2.4",
 		"orchestra/testbench": "^8.0",
 		"pestphp/pest": "^1.22",
 		"pestphp/pest-plugin-laravel": "^1.4",
@@ -48,7 +49,6 @@
 		"post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
 		"analyse": "vendor/bin/phpstan analyse",
 		"test": "vendor/bin/pest",
-		"test-coverage": "vendor/bin/pest --coverage",
 		"format": "vendor/bin/pint"
 	},
 	"extra": {

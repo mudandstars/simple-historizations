@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 return [
-	'lastFullAnalysisTime' => 1677069122,
+	'lastFullAnalysisTime' => 1677069546,
 	'meta' => array (
   'cacheVersion' => 'v10-collectedData',
   'phpstanVersion' => '1.10.1',
@@ -17,7 +17,7 @@ return [
   ),
   'composerLocks' => 
   array (
-    '/home/paul/dynamiq/packages/mudandstars/historize-model-changes/composer.lock' => 'b15fa019751843d80fa07d777787fff5f5881cd7',
+    '/home/paul/dynamiq/packages/mudandstars/historize-model-changes/composer.lock' => '326808a2795fd53220ef5e9e99d3bb1ac9d86501',
   ),
   'composerInstalled' => 
   array (
@@ -669,6 +669,18 @@ return [
           ),
           'dev_requirement' => true,
         ),
+        'nunomaduro/larastan' => 
+        array (
+          'pretty_version' => '2.4.1',
+          'version' => '2.4.1.0',
+          'reference' => '238fdbfba3aae133cdec73e99826c9b0232141f7',
+          'type' => 'phpstan-extension',
+          'install_path' => '/home/paul/dynamiq/packages/mudandstars/historize-model-changes/vendor/composer/../nunomaduro/larastan',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
         'nunomaduro/termwind' => 
         array (
           'pretty_version' => 'v1.15.1',
@@ -760,6 +772,18 @@ return [
           'reference' => '4f7fd7836c6f332bb2933569e566a0d6c4cbed74',
           'type' => 'library',
           'install_path' => '/home/paul/dynamiq/packages/mudandstars/historize-model-changes/vendor/composer/../phar-io/version',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'phpmyadmin/sql-parser' => 
+        array (
+          'pretty_version' => '5.7.0',
+          'version' => '5.7.0.0',
+          'reference' => '0f5895aab2b6002d00b6831b60983523dea30bff',
+          'type' => 'library',
+          'install_path' => '/home/paul/dynamiq/packages/mudandstars/historize-model-changes/vendor/composer/../phpmyadmin/sql-parser',
           'aliases' => 
           array (
           ),
@@ -1803,6 +1827,7 @@ return [
   ),
   'executedFilesHashes' => 
   array (
+    '/home/paul/dynamiq/packages/mudandstars/historize-model-changes/vendor/nunomaduro/larastan/bootstrap.php' => '83df8de2ac49123d1901c7429060f745055290db',
     'phar:///home/paul/dynamiq/packages/mudandstars/historize-model-changes/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/Attribute.php' => 'eaf9127f074e9c7ebc65043ec4050f9fed60c2bb',
     'phar:///home/paul/dynamiq/packages/mudandstars/historize-model-changes/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/ReflectionAttribute.php' => '0b4b78277eb6545955d2ce5e09bff28f1f8052c8',
     'phar:///home/paul/dynamiq/packages/mudandstars/historize-model-changes/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/ReflectionIntersectionType.php' => 'a3e6299b87ee5d407dae7651758edfa11a74cb11',
@@ -1924,25 +1949,6 @@ return [
        'tip' => NULL,
        'nodeLine' => 121,
        'nodeType' => 'PHPStan\\Node\\ExecutionEndNode',
-       'identifier' => NULL,
-       'metadata' => 
-      array (
-      ),
-    )),
-  ),
-  '/home/paul/dynamiq/packages/mudandstars/historize-model-changes/src/Models/TraitTestModel.php' => 
-  array (
-    0 => 
-    \PHPStan\Analyser\Error::__set_state(array(
-       'message' => 'Access to an undefined property Mudandstars\\HistorizeModelChanges\\Models\\TraitTestModel::$id.',
-       'file' => '/home/paul/dynamiq/packages/mudandstars/historize-model-changes/src/Traits/HistorizeModelChange.php (in context of class Mudandstars\\HistorizeModelChanges\\Models\\TraitTestModel)',
-       'line' => 33,
-       'canBeIgnored' => true,
-       'filePath' => '/home/paul/dynamiq/packages/mudandstars/historize-model-changes/src/Models/TraitTestModel.php',
-       'traitFilePath' => '/home/paul/dynamiq/packages/mudandstars/historize-model-changes/src/Traits/HistorizeModelChange.php',
-       'tip' => NULL,
-       'nodeLine' => 33,
-       'nodeType' => 'PhpParser\\Node\\Expr\\PropertyFetch',
        'identifier' => NULL,
        'metadata' => 
       array (
