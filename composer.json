@@ -3,31 +3,27 @@
 	"description": "This package allows for simple historization of specific columns of a model.",
 	"type": "library",
 	"license": "MIT",
+    "authors": [
+        {
+            "name": "Paul Sochiera",
+            "email": "paul.sochiera@gmail.com"
+        }
+    ],
+    "homepage": "https://github.com/mudandstars/historize-model-changes",
 	"autoload": {
 		"psr-4": {
 			"Mudandstars\\HistorizeModelChanges\\": "src"
-		},
-		"classmap": [
-			"src"
-		]
+		}
 	},
-	"homepage": "https://github.com/mudandstars/historize-model-changes",
 	"autoload-dev": {
 		"psr-4": {
-			"Mudandstars\\HistorizeModelChanges\\Tests\\": "tests",
-			"App\\": "vendor/orchestra/testbench-core/laravel/app/"
-		},
-		"classmap": [
-			"tests",
-			"vendor/orchestra/testbench-core/laravel/app/"
-		]
-	},
-	"authors": [
-		{
-			"name": "Paul Sochiera",
-			"email": "paul.sochiera@gmail.com"
+			"Mudandstars\\HistorizeModelChanges\\Tests\\": "tests"
 		}
-	],
+	},
+    "require": {
+        "php": "^8.2",
+        "spatie/laravel-package-tools": "^1.14"
+    },
 	"require-dev": {
 		"laravel/pint": "^1.4",
 		"nunomaduro/larastan": "^2.4",
@@ -39,6 +35,8 @@
 		"phpstan/phpstan-phpunit": "^1.3"
 	},
 	"config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
 		"sort-packages": true,
 		"allow-plugins": {
 			"pestphp/pest-plugin": true,
@@ -57,10 +55,6 @@
 				"Mudandstars\\HistorizeModelChanges\\HMCServiceProvider"
 			]
 		}
-	},
-	"require": {
-		"php": "^8.2",
-		"spatie/laravel-package-tools": "^1.14"
 	},
 	"minimum-stability": "stable",
 	"prefer-stable": true
