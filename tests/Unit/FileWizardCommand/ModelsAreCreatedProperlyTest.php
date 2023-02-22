@@ -35,12 +35,14 @@ it('created models have proper $casts attribute', function () {
         if ($columnType == 'date' || $columnType == 'timestamp' || $columnType == 'timestampTz') {
             expect(str_contains(file_get_contents($modelPath), 'protected $dates = ['))->toBeTrue();
             expect(str_contains(file_get_contents($modelPath), "'created_at',"))->toBeTrue();
-            expect(str_contains(file_get_contents($modelPath), $columnName))->toBeTrue();
+            expect(str_contains(file_get_contents($modelPath), 'previous_'.$columnName))->toBeTrue();
+            expect(str_contains(file_get_contents($modelPath), 'new_'.$columnName))->toBeTrue();
         }
 
         if ($columnType == 'boolean') {
             expect(str_contains(file_get_contents($modelPath), 'protected $casts = ['))->toBeTrue();
-            expect(str_contains(file_get_contents($modelPath), $columnName."' => 'boolean',"))->toBeTrue();
+            expect(str_contains(file_get_contents($modelPath), 'previous_'.$columnName."' => 'boolean',"))->toBeTrue();
+            expect(str_contains(file_get_contents($modelPath), 'new_'.$columnName."' => 'boolean',"))->toBeTrue();
         }
     }
 });

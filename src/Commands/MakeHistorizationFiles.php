@@ -68,6 +68,7 @@ class MakeHistorizationFiles extends Command
     protected function makeFile(string $model, string $type): void
     {
         $path = $this->getSourceFilePath($model, $type);
+        $this->info("Source Path: {$path}");
 
         $this->makeDirectory(dirname($path));
 
@@ -155,13 +156,13 @@ class MakeHistorizationFiles extends Command
 
         switch($type) {
             case 'boolean':
-                return "\tprotected \$dates = [\n\t\t'created_at',\n\t];\n\tprotected \$casts = [\n\t\t'".$name."' => 'boolean',";
+                return "\tprotected \$dates = [\n\t\t'created_at',\n\t];\n\tprotected \$casts = [\n\t\t'previous_".$name."' => 'boolean',\n\t\t'new_".$name."' => 'boolean',\n\t];";
             case 'date':
-                return "\tprotected \$dates = [\n\t\t'created_at',\n\t\t'".$name."',\n\t];";
+                return "\tprotected \$dates = [\n\t\t'created_at',\n\t\t'previous_".$name."',\n\t\t'new_".$name."',\n\t];";
             case 'timestamp':
-                return "\tprotected \$dates = [\n\t\t'created_at',\n\t\t'".$name."',\n\t];";
+                return "\tprotected \$dates = [\n\t\t'created_at',\n\t\t'previous_".$name."',\n\t\t'new_".$name."',\n\t];";
             case 'timestampTz':
-                return "\tprotected \$dates = [\n\t\t'created_at',\n\t\t'".$name."',\n\t];";
+                return "\tprotected \$dates = [\n\t\t'created_at',\n\t\t'previous_".$name."',\n\t\t'new_".$name."',\n\t];";
             default:
                 return "\tprotected \$dates = [\n\t\t'created_at',\n\t];";
         }
