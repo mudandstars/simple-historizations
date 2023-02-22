@@ -3,7 +3,7 @@
 	"description": "This package allows for simple historization of specific columns of a model.",
 	"type": "library",
 	"license": "MIT",
-    "version": "0.6.0",
+    "version": "0.7.0",
 	"authors": [
 		{
 			"name": "Paul Sochiera",
