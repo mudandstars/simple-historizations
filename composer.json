@@ -44,5 +44,8 @@
 				"Mudandstars\\HistorizeModelChanges\\HMCServiceProvider"
 			]
 		}
+	},
+	"require": {
+		"spatie/laravel-package-tools": "^1.14"
 	}
 }

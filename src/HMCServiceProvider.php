@@ -2,22 +2,16 @@
 
 namespace Mudandstars\HistorizeModelChanges;
 
-use Illuminate\Support\ServiceProvider;
+use Mudandstars\HistorizeModelChanges\Commands\MakeHistorizationFiles;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class HMCServiceProvider extends ServiceProvider
+class HMCServiceProvider extends PackageServiceProvider
 {
-    public function register(): void
+    public function configurePackage(Package $package): void
     {
-        //
-    }
-
-    public function boot(): void
-    {
-        // Register the command if we are using the application via the CLI
-        // if ($this->app->runningInConsole()) {
-        //     $this->commands([
-        //         MakeHistorizationFiles::class,
-        //     ]);
-        // }
+        $package
+            ->name('historize-model-changes')
+            ->hasCommand(MakeHistorizationFiles::class);
     }
 }
