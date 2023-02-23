@@ -1,10 +1,9 @@
 # historize-model-changes
-# THIS IS STILL IN BETA. DO NOT USE THIS PACKAGE YET.
 
 When you want to historize changes to a column in your model, this package is for you.
 
 ## How it works
-You have a model MyModel and want to historize changes to the column_to_historize column.
+You have a model 'MyModel' and want to historize changes to the 'column_to_historize' column.
 
 So you add the trait to the model and specify which columns to historize, giving each historization model a proper name.
 
