@@ -13,12 +13,20 @@
 	"autoload": {
 		"psr-4": {
 			"Mudandstars\\HistorizeModelChanges\\": "src"
-		}
+		},
+        "classmap": [
+            "src"
+        ]
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Mudandstars\\HistorizeModelChanges\\Tests\\": "tests"
-		}
+			"Mudandstars\\HistorizeModelChanges\\Tests\\": "tests",
+            "App\\": "vendor/orchestra/testbench-core/laravel/app/"
+		},
+        "classmap": [
+            "tests",
+            "vendor/orchestra/testbench-core/laravel/app/"
+        ]
 	},
 	"require": {
 		"php": "^8.2",
