@@ -3,9 +3,9 @@
 namespace Tests\Unit\FileWizardCommand;
 
 use Illuminate\Support\Facades\Artisan;
-use Mudandstars\HistorizeModelChanges\Actions\GetCorrespondingMigrationPath;
-use Mudandstars\HistorizeModelChanges\Actions\GetMigrationName;
-use Mudandstars\HistorizeModelChanges\Services\GetMigrationColumns;
+use Mudandstars\HistorizeModelChanges\Actions\GetCorrespondingMigrationPathAction;
+use Mudandstars\HistorizeModelChanges\Actions\GetMigrationNameAction;
+use Mudandstars\HistorizeModelChanges\Services\MigrationColumnsService;
 
 it('migrations have correct column types', function () {
     Artisan::call('make-historization-files');
@@ -13,11 +13,11 @@ it('migrations have correct column types', function () {
     $historizeParams = parent::getTestModelHistorizeParams();
 
     foreach (array_keys($historizeParams) as $modelName) {
-        $migrationName = GetMigrationName::execute($modelName);
+        $migrationName = GetMigrationNameAction::execute($modelName);
         $migrationPath = base_path('database/migrations/'.$migrationName);
 
-        $migrationColumnService = new GetMigrationColumns();
-        $migrationColumns = $migrationColumnService->getArray(GetCorrespondingMigrationPath::execute(parent::getModelName()));
+        $migrationColumnService = new MigrationColumnsService();
+        $migrationColumns = $migrationColumnService->getArray(GetCorrespondingMigrationPathAction::execute(parent::getModelName()));
 
         $columnName = $historizeParams[$modelName];
         $type = $migrationColumns[$columnName];
@@ -35,7 +35,7 @@ it('migration files have proper foreignIdFor', function () {
     $historizeParams = parent::getTestModelHistorizeParams();
 
     foreach (array_keys($historizeParams) as $modelName) {
-        $migrationName = GetMigrationName::execute($modelName);
+        $migrationName = GetMigrationNameAction::execute($modelName);
         $migrationPath = base_path('database/migrations/'.$migrationName);
 
         expect(str_contains(file_get_contents($migrationPath), 'use App\Models\\'.parent::getModelName().';'))->toBeTrue();
@@ -49,7 +49,7 @@ it("migration command creates correct migrations' files", function () {
     $historizeParams = parent::getTestModelHistorizeParams();
 
     foreach (array_keys($historizeParams) as $model) {
-        $migrationAction = new GetMigrationName();
+        $migrationAction = new GetMigrationNameAction();
         $migrationName = $migrationAction->execute($model);
         $migrationPath = base_path('database/migrations/'.$migrationName);
 

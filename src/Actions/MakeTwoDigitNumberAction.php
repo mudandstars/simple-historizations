@@ -2,7 +2,7 @@
 
 namespace Mudandstars\HistorizeModelChanges\Actions;
 
-class MakeTwoDigitNumber
+class MakeTwoDigitNumberAction
 {
     public static function execute(int $number): string
     {

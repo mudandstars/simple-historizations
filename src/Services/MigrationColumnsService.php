@@ -2,7 +2,9 @@
 
 namespace Mudandstars\HistorizeModelChanges\Services;
 
-class GetMigrationColumns
+use Mudandstars\HistorizeModelChanges\Actions\GetStringBetweenAction;
+
+class MigrationColumnsService
 {
     public function getArray(string $migrationPath): array
     {
@@ -16,14 +18,14 @@ class GetMigrationColumns
         $content = file_get_contents($path);
         $migrationColumns = [];
 
-        $arrayInStringForm = $this->getStringBetween($content, 'Blueprint $table) {', '});');
+        $arrayInStringForm = GetStringBetweenAction::execute($content, 'Blueprint $table) {', '});');
 
         preg_match_all('/\\n/', $arrayInStringForm, $matches, PREG_OFFSET_CAPTURE);
         for ($i = 0; $i < count($matches[0]) - 1; $i++) {
             $currentSubstring = substr($arrayInStringForm, $matches[0][$i][1], $matches[0][$i + 1][1] - $matches[0][$i][1]);
 
-            $key = $this->getStringBetween($currentSubstring, "('", "')");
-            $value = $this->getStringBetween($currentSubstring, '->', "('");
+            $key = GetStringBetweenAction::execute($currentSubstring, "('", "')");
+            $value = GetStringBetweenAction::execute($currentSubstring, '->', "('");
 
             if (! $key || $key == 'id') {
                 continue;
@@ -33,18 +35,5 @@ class GetMigrationColumns
         }
 
         return $migrationColumns;
-    }
-
-    private function getStringBetween(string $content, string $start, string $end): string
-    {
-        $string = ' '.$content;
-        $ini = strpos($string, $start);
-        if ($ini == 0) {
-            return '';
-        }
-        $ini += strlen($start);
-        $len = strpos($string, $end, $ini) - $ini;
-
-        return substr($string, $ini, $len);
     }
 }

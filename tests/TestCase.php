@@ -2,10 +2,10 @@
 
 namespace Tests;
 
-use Mudandstars\HistorizeModelChanges\Actions\GetMigrationName;
+use Mudandstars\HistorizeModelChanges\Actions\GetMigrationNameAction;
 use Mudandstars\HistorizeModelChanges\HMCServiceProvider;
-use Mudandstars\HistorizeModelChanges\Services\GetHistorizeParams;
-use Mudandstars\HistorizeModelChanges\Services\GetMigrationColumns;
+use Mudandstars\HistorizeModelChanges\Services\HistorizeParamsService;
+use Mudandstars\HistorizeModelChanges\Services\MigrationColumnsService;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -19,9 +19,9 @@ class TestCase extends Orchestra
 
     public function getTestModelMigrationColumns(): array
     {
-        $getMigractionColumnsService = new GetMigrationColumns();
+        $getMigractionColumnsService = new MigrationColumnsService();
 
-        $migrationName = GetMigrationName::execute($this->getModelName());
+        $migrationName = GetMigrationNameAction::execute($this->getModelName());
         $migrationPath = base_path('database/migrations/'.$migrationName);
 
         $migrationColumns = $getMigractionColumnsService->getArray($migrationPath);
@@ -31,7 +31,7 @@ class TestCase extends Orchestra
 
     public function getTestModelHistorizeParams(): array
     {
-        $historizeParamsService = new GetHistorizeParams();
+        $historizeParamsService = new HistorizeParamsService();
 
         $historizeParams = $historizeParamsService->getArray(app_path('Models/'.$this->getModelName().'.php'));
 
@@ -102,7 +102,7 @@ class TestCase extends Orchestra
 
         $contents = file_get_contents($correspondingMigrationPath);
 
-        $newPath = base_path('database/migrations/'.GetMigrationName::execute($model));
+        $newPath = base_path('database/migrations/'.GetMigrationNameAction::execute($model));
 
         file_put_contents($newPath, $contents);
     }

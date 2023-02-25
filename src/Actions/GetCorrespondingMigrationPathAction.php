@@ -2,11 +2,11 @@
 
 namespace Mudandstars\HistorizeModelChanges\Actions;
 
-class GetCorrespondingMigrationPath
+class GetCorrespondingMigrationPathAction
 {
     public static function execute(string $model): string
     {
-        $tableName = GetTableName::execute($model);
+        $tableName = GetTableNameAction::execute($model);
 
         $allMigrations = scandir(base_path('database/migrations'));
 

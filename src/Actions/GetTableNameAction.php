@@ -2,7 +2,7 @@
 
 namespace Mudandstars\HistorizeModelChanges\Actions;
 
-class GetTableName
+class GetTableNameAction
 {
     public static function execute(string $modelName): string
     {

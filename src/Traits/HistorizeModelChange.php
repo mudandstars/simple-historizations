@@ -4,8 +4,8 @@ namespace Mudandstars\HistorizeModelChanges\Traits;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
-use Mudandstars\HistorizeModelChanges\Actions\GetCorrespondingMigrationPath;
-use Mudandstars\HistorizeModelChanges\Services\GetMigrationColumns;
+use Mudandstars\HistorizeModelChanges\Actions\GetCorrespondingMigrationPathAction;
+use Mudandstars\HistorizeModelChanges\Services\MigrationColumnsService;
 
 trait HistorizeModelChange
 {
@@ -28,7 +28,7 @@ trait HistorizeModelChange
 
         $model = App::make('App\Models\\'.$modelName);
 
-        if (array_key_exists($column, $attributes) && $this->valueChanged($attributes, $column, $modelName)) {
+        if ($this->shouldCreateHistorizationInstance($attributes, $column, $modelName)) {
             $model->create([
                 rtrim($this->getTable(), 's').'_id' => $this->id,
                 'previous_'.$column => $this->__get($column),
@@ -37,10 +37,16 @@ trait HistorizeModelChange
         }
     }
 
+    private function shouldCreateHistorizationInstance(array $attributes, string $column, string $modelName): bool
+    {
+        return array_key_exists($column, $attributes)
+        && $this->valueChanged($attributes, $column, $modelName);
+    }
+
     private function valueChanged(array $attributes, string $column, string $modelName): bool
     {
-        $migrationColumnService = new GetMigrationColumns();
-        $migrationColumns = $migrationColumnService->getArray(GetCorrespondingMigrationPath::execute(class_basename($this)));
+        $migrationColumnService = new MigrationColumnsService();
+        $migrationColumns = $migrationColumnService->getArray(GetCorrespondingMigrationPathAction::execute(class_basename($this)));
 
         $name = $this->historize[$modelName];
         $type = $migrationColumns[$name];
