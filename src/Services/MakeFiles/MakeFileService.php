@@ -87,15 +87,15 @@ abstract class MakeFileService
 
         switch($columnType) {
             case 'boolean':
-                return "\tprotected \$dates = [\n\t\t'created_at',\n\t];\n\tprotected \$casts = [\n\t\t'previous_".$columnName."' => 'boolean',\n\t\t'new_".$columnName."' => 'boolean',\n\t];";
+                return "\tprotected \$casts = [\n\t\t'created_at' => 'datetime',\n\t\t'previous_".$columnName."' => 'boolean',\n\t\t'new_".$columnName."' => 'boolean',\n\t];";
             case 'date':
-                return "\tprotected \$dates = [\n\t\t'created_at',\n\t\t'previous_".$columnName."',\n\t\t'new_".$columnName."',\n\t];";
+                return "\tprotected \$casts = [\n\t\t'created_at' => 'datetime',\n\t\t'previous_".$columnName."' => 'datetime',\n\t\t'new_".$columnName."' => 'datetime',\n\t];";
             case 'timestamp':
-                return "\tprotected \$dates = [\n\t\t'created_at',\n\t\t'previous_".$columnName."',\n\t\t'new_".$columnName."',\n\t];";
+                return "\tprotected \$casts = [\n\t\t'created_at' => 'datetime',\n\t\t'previous_".$columnName."' => 'datetime',\n\t\t'new_".$columnName."' => 'datetime',\n\t];";
             case 'timestampTz':
-                return "\tprotected \$dates = [\n\t\t'created_at',\n\t\t'previous_".$columnName."',\n\t\t'new_".$columnName."',\n\t];";
+                return "\tprotected \$casts = [\n\t\t'created_at' => 'datetime',\n\t\t'previous_".$columnName."' => 'datetime',\n\t\t'new_".$columnName."' => 'datetime',\n\t];";
             default:
-                return "\tprotected \$dates = [\n\t\t'created_at',\n\t];";
+                return "\tprotected \$casts = [\n\t\t'created_at' => 'datetime',\n\t];";
         }
     }
 }

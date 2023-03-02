@@ -11,8 +11,8 @@ class IntegerHistorization extends Model
 
     protected $guarded = [];
 
-    protected $dates = [
-        'created_at',
+    protected $casts = [
+        'created_at' => 'datetime',
     ];
 
     public function traitTestModels(): BelongsTo

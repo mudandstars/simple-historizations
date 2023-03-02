@@ -11,10 +11,10 @@ class DateHistorization extends Model
 
     protected $guarded = [];
 
-    protected $dates = [
-        'created_at',
-        'previous_date',
-        'new_date',
+    protected $casts = [
+        'created_at' => 'datetime',
+        'previous_date' => 'datetime',
+        'new_date' => 'datetime',
     ];
 
     public function traitTestModels(): BelongsTo

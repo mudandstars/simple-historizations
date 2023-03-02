@@ -26,13 +26,10 @@ class TraitTestModel extends Model
 
     protected $guarded = [];
 
-    protected $dates = [
-        'date',
-        'timestamp',
-        'timestampTz',
-    ];
-
     protected $casts = [
+        'date' => 'datetime',
+        'timestamp' => 'datetime',
+        'timestampTz' => 'datetime',
         'boolean' => 'boolean'
     ];
 }
