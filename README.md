@@ -1,7 +1,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mudandstars/historize-model-changes.svg?style=flat-square)](https://packagist.org/packages/mudandstars/historize-model-changes)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/mudandstars/historize-model-changes.svg?style=flat-square)](https://packagist.org/packages/mudandstars/historize-model-changes)
-
+[![Tests](https://github.com/mudandstars/simple-historizations/actions/workflows/tests.yml/badge.svg)](https://github.com/mudandstars/simple-historizations/actions/workflows/tests.yml)
 # historize-model-changes
 
 When you want to historize changes to a column in your model, this package is for you.
