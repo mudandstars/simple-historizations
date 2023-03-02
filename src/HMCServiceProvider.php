@@ -11,7 +11,7 @@ class HMCServiceProvider extends PackageServiceProvider
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('historize-model-changes')
+            ->name('simple-historizations')
             ->hasCommand(MakeHistorizationFilesCommand::class);
     }
 }
