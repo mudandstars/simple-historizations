@@ -58,7 +58,7 @@ class MakeHistorizationFilesCommand extends Command
                 continue;
             }
 
-            if (str_contains(file_get_contents($modelsPath.$modelPath), 'use HistorizeModelChange')) {
+            if (str_contains(file_get_contents($modelsPath.$modelPath), 'use SimpleHistorizations')) {
                 array_push($modelsImplementingTrait, $modelPath);
             }
         }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Mudandstars\SimpleHistorizations\Traits\HistorizeModelChange;
+use Mudandstars\SimpleHistorizations\Traits\SimpleHistorizations;
 
 // This Model is used just for testing
 // It implements the trait and is therefore used to test the commands
@@ -12,7 +12,7 @@ use Mudandstars\SimpleHistorizations\Traits\HistorizeModelChange;
 class TraitTestModel extends Model
 {
     use HasFactory;
-    use HistorizeModelChange;
+    use SimpleHistorizations;
 
     protected $historize = [
         'TestHistorization' => 'string',

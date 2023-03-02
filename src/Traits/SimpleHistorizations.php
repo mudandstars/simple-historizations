@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\App;
 use Mudandstars\SimpleHistorizations\Actions\GetCorrespondingMigrationPathAction;
 use Mudandstars\SimpleHistorizations\Services\MigrationColumnsService;
 
-trait HistorizeModelChange
+trait SimpleHistorizations
 {
     public function update(array $attributes = [], array $options = [])
     {

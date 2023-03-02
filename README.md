@@ -1,8 +1,8 @@
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/mudandstars/historize-model-changes.svg?style=flat-square)](https://packagist.org/packages/mudandstars/historize-model-changes)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/mudandstars/simple-historizations.svg?style=flat-square)](https://packagist.org/packages/mudandstars/historize-model-changes)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Total Downloads](https://img.shields.io/packagist/dt/mudandstars/historize-model-changes.svg?style=flat-square)](https://packagist.org/packages/mudandstars/historize-model-changes)
+[![Total Downloads](https://img.shields.io/packagist/dt/mudandstars/simple-historizations.svg?style=flat-square)](https://packagist.org/packages/mudandstars/historize-model-changes)
 [![Tests](https://github.com/mudandstars/simple-historizations/actions/workflows/tests.yml/badge.svg)](https://github.com/mudandstars/simple-historizations/actions/workflows/tests.yml)
-# historize-model-changes
+# simple-historizations
 
 When you want to historize changes to a column in your model, this package is for you.
 
@@ -19,7 +19,7 @@ Then, you run the command and migrate your database and voilá, whenever the spe
 1. Install the package into your project via composer like so:
 
 ```
-composer require mudandstars/historize-model-changes
+composer require mudandstars/simple-historizations
 ```
 
 2. Use the trait in the models you want to historize on change:
@@ -27,7 +27,7 @@ composer require mudandstars/historize-model-changes
 ```php
 class MyModel extends Model
 {
-    use HistorizeModelChange;
+    use SimpleHistorizations;
 
     ...
 }
@@ -38,7 +38,7 @@ class MyModel extends Model
 ```php
 class MyModel extends Model
 {
-    use HistorizeModelChange;
+    use SimpleHistorizations;
 
     protected $historize = [
         'HistorizationModelName' => 'column_to_historize',

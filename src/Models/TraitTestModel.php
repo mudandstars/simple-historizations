@@ -3,11 +3,11 @@
 namespace Mudandstars\SimpleHistorizations\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Mudandstars\SimpleHistorizations\Traits\HistorizeModelChange;
+use Mudandstars\SimpleHistorizations\Traits\SimpleHistorizations;
 
 class TraitTestModel extends Model
 {
-    use HistorizeModelChange;
+    use SimpleHistorizations;
 
     protected $guarded = [];
 
