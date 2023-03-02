@@ -3,9 +3,9 @@
 namespace Tests\Unit\FileWizardCommand;
 
 use Illuminate\Support\Facades\Artisan;
-use Mudandstars\HistorizeModelChanges\Actions\GetCorrespondingMigrationPathAction;
-use Mudandstars\HistorizeModelChanges\Actions\GetMigrationNameAction;
-use Mudandstars\HistorizeModelChanges\Services\MigrationColumnsService;
+use Mudandstars\SimpleHistorizations\Actions\GetCorrespondingMigrationPathAction;
+use Mudandstars\SimpleHistorizations\Actions\GetMigrationNameAction;
+use Mudandstars\SimpleHistorizations\Services\MigrationColumnsService;
 
 it('migrations have correct column types', function () {
     Artisan::call('make-historization-files');

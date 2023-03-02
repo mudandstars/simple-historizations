@@ -1,12 +1,12 @@
 <?php
 
-namespace Mudandstars\HistorizeModelChanges\Commands;
+namespace Mudandstars\SimpleHistorizations\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Mudandstars\HistorizeModelChanges\Services\HistorizeParamsService;
-use Mudandstars\HistorizeModelChanges\Services\MakeFiles\MakeMigrationService;
-use Mudandstars\HistorizeModelChanges\Services\MakeFiles\MakeModelService;
+use Mudandstars\SimpleHistorizations\Services\HistorizeParamsService;
+use Mudandstars\SimpleHistorizations\Services\MakeFiles\MakeMigrationService;
+use Mudandstars\SimpleHistorizations\Services\MakeFiles\MakeModelService;
 
 class MakeHistorizationFilesCommand extends Command
 {

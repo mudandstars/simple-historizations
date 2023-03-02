@@ -1,6 +1,6 @@
 <?php
 
-namespace Mudandstars\HistorizeModelChanges\Actions;
+namespace Mudandstars\SimpleHistorizations\Actions;
 
 use Carbon\Carbon;
 

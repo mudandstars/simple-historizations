@@ -1,11 +1,11 @@
 <?php
 
-namespace Mudandstars\HistorizeModelChanges\Traits;
+namespace Mudandstars\SimpleHistorizations\Traits;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
-use Mudandstars\HistorizeModelChanges\Actions\GetCorrespondingMigrationPathAction;
-use Mudandstars\HistorizeModelChanges\Services\MigrationColumnsService;
+use Mudandstars\SimpleHistorizations\Actions\GetCorrespondingMigrationPathAction;
+use Mudandstars\SimpleHistorizations\Services\MigrationColumnsService;
 
 trait HistorizeModelChange
 {

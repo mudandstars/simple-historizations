@@ -1,6 +1,6 @@
 <?php
 
-namespace Mudandstars\HistorizeModelChanges\Models;
+namespace Mudandstars\SimpleHistorizations\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

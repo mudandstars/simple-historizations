@@ -3,7 +3,7 @@
 namespace Tests\Unit\Trait;
 
 use Illuminate\Support\Facades\Artisan;
-use Mudandstars\HistorizeModelChanges\Models\TraitTestModel;
+use Mudandstars\SimpleHistorizations\Models\TraitTestModel;
 
 it('model is updated properly', function () {
     Artisan::call('make-historization-files');

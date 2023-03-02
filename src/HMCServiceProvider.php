@@ -1,8 +1,8 @@
 <?php
 
-namespace Mudandstars\HistorizeModelChanges;
+namespace Mudandstars\SimpleHistorizations;
 
-use Mudandstars\HistorizeModelChanges\Commands\MakeHistorizationFilesCommand;
+use Mudandstars\SimpleHistorizations\Commands\MakeHistorizationFilesCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 

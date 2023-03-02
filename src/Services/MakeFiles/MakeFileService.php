@@ -1,11 +1,11 @@
 <?php
 
-namespace Mudandstars\HistorizeModelChanges\Services\MakeFiles;
+namespace Mudandstars\SimpleHistorizations\Services\MakeFiles;
 
 use Illuminate\Filesystem\Filesystem;
-use Mudandstars\HistorizeModelChanges\Actions\GetCorrespondingMigrationPathAction;
-use Mudandstars\HistorizeModelChanges\Services\HistorizeParamsService;
-use Mudandstars\HistorizeModelChanges\Services\MigrationColumnsService;
+use Mudandstars\SimpleHistorizations\Actions\GetCorrespondingMigrationPathAction;
+use Mudandstars\SimpleHistorizations\Services\HistorizeParamsService;
+use Mudandstars\SimpleHistorizations\Services\MigrationColumnsService;
 
 abstract class MakeFileService
 {

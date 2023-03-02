@@ -1,9 +1,9 @@
 <?php
 
-namespace Mudandstars\HistorizeModelChanges\Models;
+namespace Mudandstars\SimpleHistorizations\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Mudandstars\HistorizeModelChanges\Traits\HistorizeModelChange;
+use Mudandstars\SimpleHistorizations\Traits\HistorizeModelChange;
 
 class TraitTestModel extends Model
 {

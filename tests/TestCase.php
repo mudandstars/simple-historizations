@@ -2,10 +2,10 @@
 
 namespace Tests;
 
-use Mudandstars\HistorizeModelChanges\Actions\GetMigrationNameAction;
-use Mudandstars\HistorizeModelChanges\HMCServiceProvider;
-use Mudandstars\HistorizeModelChanges\Services\HistorizeParamsService;
-use Mudandstars\HistorizeModelChanges\Services\MigrationColumnsService;
+use Mudandstars\SimpleHistorizations\Actions\GetMigrationNameAction;
+use Mudandstars\SimpleHistorizations\HMCServiceProvider;
+use Mudandstars\SimpleHistorizations\Services\HistorizeParamsService;
+use Mudandstars\SimpleHistorizations\Services\MigrationColumnsService;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra

@@ -1,6 +1,6 @@
 {
-	"name": "mudandstars/historize-model-changes",
-	"description": "This package allows for simple historization of specific columns of a model.",
+	"name": "mudandstars/simple-historizations",
+	"description": "This package allows for simple historizations of specific columns of a model.",
 	"type": "library",
 	"license": "MIT",
 	"authors": [
@@ -9,24 +9,24 @@
 			"email": "paul.sochiera@gmail.com"
 		}
 	],
-	"homepage": "https://github.com/mudandstars/historize-model-changes",
+	"homepage": "https://github.com/mudandstars/simple-historizations",
 	"autoload": {
 		"psr-4": {
-			"Mudandstars\\HistorizeModelChanges\\": "src"
+			"Mudandstars\\SimpleHistorizations\\": "src"
 		},
-        "classmap": [
-            "src"
-        ]
+		"classmap": [
+			"src"
+		]
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Mudandstars\\HistorizeModelChanges\\Tests\\": "tests",
-            "App\\": "vendor/orchestra/testbench-core/laravel/app/"
+			"Mudandstars\\SimpleHistorizations\\Tests\\": "tests",
+			"App\\": "vendor/orchestra/testbench-core/laravel/app/"
 		},
-        "classmap": [
-            "tests",
-            "vendor/orchestra/testbench-core/laravel/app/"
-        ]
+		"classmap": [
+			"tests",
+			"vendor/orchestra/testbench-core/laravel/app/"
+		]
 	},
 	"require": {
 		"php": "^8.2",
@@ -60,7 +60,7 @@
 	"extra": {
 		"laravel": {
 			"providers": [
-				"Mudandstars\\HistorizeModelChanges\\HMCServiceProvider"
+				"Mudandstars\\SimpleHistorizations\\HMCServiceProvider"
 			]
 		}
 	},

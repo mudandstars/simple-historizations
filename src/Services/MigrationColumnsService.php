@@ -1,8 +1,8 @@
 <?php
 
-namespace Mudandstars\HistorizeModelChanges\Services;
+namespace Mudandstars\SimpleHistorizations\Services;
 
-use Mudandstars\HistorizeModelChanges\Actions\GetStringBetweenAction;
+use Mudandstars\SimpleHistorizations\Actions\GetStringBetweenAction;
 
 class MigrationColumnsService
 {

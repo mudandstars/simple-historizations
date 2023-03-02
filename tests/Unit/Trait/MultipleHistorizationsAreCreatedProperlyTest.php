@@ -4,9 +4,9 @@ namespace Tests\Unit\Trait;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
-use Mudandstars\HistorizeModelChanges\Models\DateHistorization;
-use Mudandstars\HistorizeModelChanges\Models\IntegerHistorization;
-use Mudandstars\HistorizeModelChanges\Models\TraitTestModel;
+use Mudandstars\SimpleHistorizations\Models\DateHistorization;
+use Mudandstars\SimpleHistorizations\Models\IntegerHistorization;
+use Mudandstars\SimpleHistorizations\Models\TraitTestModel;
 
 it('multiple historizations are created properly', function () {
     Artisan::call('make-historization-files');

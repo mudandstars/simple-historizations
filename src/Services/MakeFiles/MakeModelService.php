@@ -1,6 +1,6 @@
 <?php
 
-namespace Mudandstars\HistorizeModelChanges\Services\MakeFiles;
+namespace Mudandstars\SimpleHistorizations\Services\MakeFiles;
 
 use Illuminate\Filesystem\Filesystem;
 

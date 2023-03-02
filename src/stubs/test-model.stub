@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Mudandstars\HistorizeModelChanges\Traits\HistorizeModelChange;
+use Mudandstars\SimpleHistorizations\Traits\HistorizeModelChange;
 
 // This Model is used just for testing
 // It implements the trait and is therefore used to test the commands

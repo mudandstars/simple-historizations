@@ -1,10 +1,10 @@
 <?php
 
-namespace Mudandstars\HistorizeModelChanges\Services\MakeFiles;
+namespace Mudandstars\SimpleHistorizations\Services\MakeFiles;
 
 use Illuminate\Filesystem\Filesystem;
-use Mudandstars\HistorizeModelChanges\Actions\GetMigrationNameAction;
-use Mudandstars\HistorizeModelChanges\Actions\GetTableNameAction;
+use Mudandstars\SimpleHistorizations\Actions\GetMigrationNameAction;
+use Mudandstars\SimpleHistorizations\Actions\GetTableNameAction;
 
 class MakeMigrationService extends MakeFileService
 {
