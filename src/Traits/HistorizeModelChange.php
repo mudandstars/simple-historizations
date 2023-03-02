@@ -12,7 +12,7 @@ trait HistorizeModelChange
     public function update(array $attributes = [], array $options = [])
     {
         foreach (array_keys($this->historize) as $modelName) {
-            if (! file_exists(app_path('Models/'.$modelName.'.php'))) {
+            if (! $this->modelExists($modelName)) {
                 continue;
             }
 
@@ -22,15 +22,22 @@ trait HistorizeModelChange
         return parent::update($attributes, $options);
     }
 
+    private function modelExists(string $modelName): bool
+    {
+        return file_exists(app_path('Models/'.$modelName.'.php'));
+    }
+
     private function historizeUpdates(string $modelName, array $attributes): void
     {
-        $column = $this->historize[$modelName];
-
         $model = App::make('App\Models\\'.$modelName);
 
+        $column = $this->historize[$modelName];
+
         if ($this->shouldCreateHistorizationInstance($attributes, $column, $modelName)) {
+            $foreignIdColumn = rtrim($this->getTable(), 's').'_id';
+
             $model->create([
-                rtrim($this->getTable(), 's').'_id' => $this->id,
+                $foreignIdColumn => $this->id,
                 'previous_'.$column => $this->__get($column),
                 'new_'.$column => $attributes[$column],
             ]);
@@ -46,10 +53,13 @@ trait HistorizeModelChange
     private function valueChanged(array $attributes, string $column, string $modelName): bool
     {
         $migrationColumnService = new MigrationColumnsService();
-        $migrationColumns = $migrationColumnService->getArray(GetCorrespondingMigrationPathAction::execute(class_basename($this)));
 
-        $name = $this->historize[$modelName];
-        $type = $migrationColumns[$name];
+        $migrationPath = GetCorrespondingMigrationPathAction::execute(class_basename($this));
+
+        $migrationColumns = $migrationColumnService->getArray($migrationPath);
+
+        $columnName = $this->historize[$modelName];
+        $type = $migrationColumns[$columnName];
 
         if ($type === 'date') {
             return $this->__get($column)->notEqualTo(Carbon::createFromDate($attributes[$column]));
