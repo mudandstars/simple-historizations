@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Carbon\Carbon;
 use App\Models\{{ RELATED_MODEL }};
 
 return new class extends Migration
@@ -14,7 +13,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor({{ RELATED_MODEL }}::class)->constrained();
 {{ COLUMNS }}
-            $table->timestampTz('created_at')->default(Carbon::now());
+            $table->timestampTz('created_at');
         });
     }
 

@@ -22,8 +22,7 @@ it('migrations have correct column types', function () {
         $columnName = $historizeParams[$modelName];
         $type = $migrationColumns[$columnName];
 
-        expect(str_contains(file_get_contents($migrationPath), "use Carbon\Carbon;"))->toBeTrue();
-        expect(str_contains(file_get_contents($migrationPath), "\$table->timestampTz('created_at')->default(Carbon::now());"))->toBeTrue();
+        expect(str_contains(file_get_contents($migrationPath), "\$table->timestampTz('created_at');"))->toBeTrue();
         expect(str_contains(file_get_contents($migrationPath), '$table->'.$type."('previous_".$columnName."');"))->toBeTrue();
         expect(str_contains(file_get_contents($migrationPath), '$table->'.$type."('new_".$columnName."');"))->toBeTrue();
     }
