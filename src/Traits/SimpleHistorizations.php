@@ -40,7 +40,6 @@ trait SimpleHistorizations
                 $foreignIdColumn => $this->id,
                 'previous_'.$column => $this->__get($column),
                 'new_'.$column => $attributes[$column],
-                'created_at' => Carbon::now(),
             ]);
         }
     }

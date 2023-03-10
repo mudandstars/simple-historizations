@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreignIdFor(TraitTestModel::class)->constrained();
             $table->integer('previous_integer');
             $table->integer('new_integer');
-            $table->timestampTz('created_at');
+            $table->timestampTz('created_at')->useCurrent();
         });
     }
 

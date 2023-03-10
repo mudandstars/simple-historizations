@@ -13,7 +13,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor({{ RELATED_MODEL }}::class)->constrained();
 {{ COLUMNS }}
-            $table->timestampTz('created_at');
+            $table->timestampTz('created_at')->useCurrent();
         });
     }
 
