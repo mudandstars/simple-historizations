@@ -2,6 +2,10 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/mudandstars/simple-historizations.svg?style=flat-square)](https://packagist.org/packages/mudandstars/simple-historizations)
 [![Tests](https://github.com/mudandstars/simple-historizations/actions/workflows/tests.yml/badge.svg)](https://github.com/mudandstars/simple-historizations/actions/workflows/tests.yml)
+
+## Disclaimer
+This package was meant to be a practice effort, growing out of the need of an own project.
+If you require more complex functionality, I recommend you use the popular [Laravel Auditing](https://laravel-auditing.com/https://www.youtube.com/watch?v=R2d2spnXyLA).
 # simple-historizations
 
 When you want to historize changes to a column in your model, this package is for you.
